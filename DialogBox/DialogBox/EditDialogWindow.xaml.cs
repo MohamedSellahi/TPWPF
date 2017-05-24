@@ -20,7 +20,7 @@ namespace DialogBox {
 
     public EditDialogWindow() {
       InitializeComponent();
-      
+          
     }
 
     
@@ -36,7 +36,7 @@ namespace DialogBox {
     // Handlers 
 
     private void OK_Button_Click(object sender, RoutedEventArgs e) {
-      this.DialogResult = true; // close the dialog box 
+      //this.DialogResult = true; // close the dialog box 
     }
 
 
