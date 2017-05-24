@@ -1,0 +1,54 @@
+﻿<Window x:Class="DialogBox.EditDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DialogBox"
+        mc:Ignorable="d"
+        Title="EditDialogWindow" Height="200" Width="300">
+   <Window.Resources>
+      <!-- Instanciate an Animal Object with Name assigned ? and Price = 0
+           this instance will be available to dlgBox -->
+      <local:Animal x:Key="AnimalInstance" Name="" Price="0" />
+   </Window.Resources>
+
+
+   <Border Padding="5">
+      <StackPanel>
+         <TextBlock Text="Entrer le nom d'un animal et son prix "
+                    Padding="2"
+                    />
+         <!-- Two ways to do binding either directly 
+              or throug a subitem in the XAML tree -->
+         <TextBox Text="{Binding Source={StaticResource AnimalInstance}, Path=Name
+                       , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+         <TextBox Margin="0 10 0 0">
+            <TextBox.Text>
+               <Binding Source="{StaticResource AnimalInstance}" Path="Price"
+                        Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+            </TextBox.Text>
+            
+         </TextBox>
+
+         <Grid Margin="0 20 0 0">
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="*"/>
+               <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="OK_Button" Grid.Column="0" Content="Validate" Style="{StaticResource BoutonStyle}"
+                    Width="50" Height="25" Click="OK_Button_Click"
+                    />
+            <Button Name="Cancel_Button" Grid.Column="1" Content="Cancel" Style="{StaticResource BoutonStyle}"
+                    Width="50" Height="25"
+                    />
+
+
+
+
+
+
+         </Grid>
+
+      </StackPanel>
+   </Border>
+</Window>

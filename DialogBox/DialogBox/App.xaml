@@ -1,13 +1,12 @@
-﻿<Application x:Class="AP0.App"
+﻿<Application x:Class="DialogBox.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:AP0"
-             StartupUri="MainWindow.xaml">
-   <Application.Resources>
-      
+             xmlns:local="clr-namespace:DialogBox"
+             StartupUri="EditDialogWindow.xaml">
+    <Application.Resources>
       <!-- Application scope resource dictionay -->
       <ResourceDictionary>
-         
+
 
          <!-- Add dictionnaries that are split up over multiuple xaml files -->
          <ResourceDictionary.MergedDictionaries>
@@ -19,9 +18,4 @@
 
 
    </Application.Resources>
-   
-
-
-
-
 </Application>

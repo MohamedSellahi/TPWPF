@@ -5,18 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AP0"
         mc:Ignorable="d"
-        Loaded="Window_Loaded"   
-        Title="MainWindow" Height="300" Width="400">
+        Loaded="Window_Loaded"
+        Closing="Window_Closing"
+        Title="MainWindow" Height="350" Width="400">
    <Window.Resources>
+  
       <local:DoubleToIntConverter x:Key="Rouding"/>
+      <!-- Button Style -->
+      <!-- This style is accessible from any element in the current window -->
+      <!-- to be moved to resources dictionnary -->
+      <!--<Style x:Key="BoutonStyle">
+         <Setter Property="Button.Width" Value="100"/>
+         <Setter Property="Button.Height" Value="30"/>
+         <Setter Property="Button.Foreground" Value="Blue"/>
+         <Setter Property="Button.FontWeight" Value="Bold"/>
+         <Setter Property="Button.FontSize" Value="12"/>
+         <Setter Property="Button.FontStyle" Value="Italic" />
+      </Style>-->
    </Window.Resources>
 
-   
+
    <Border Padding="10">
       <StackPanel>
          <TextBlock Text="{Binding ElementName=slider1, Path=Value, 
-                            StringFormat={} Formated text {0,6:0.00},
-                            Converter={StaticResource ResourceKey=Rouding}}"
+                            StringFormat={} Formated text {0,6:0.0},
+                            Converter={StaticResource ResourceKey=Rouding},
+                            ConverterCulture=fr-fr}"
                     FontSize="16" FontWeight="Bold" Foreground="Blue"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Name="toptexBlock"/>
@@ -34,16 +48,44 @@
                         HorizontalAlignment="Center" Width="120" Margin="0 5 0 0"
                         FontStyle="Italic"
                         />
-               <GroupBox Header="Nationalité" FontWeight="Bold" Margin="0 10 0 0" Height="79">
-                  <ListBox Name="groupBox1"  FontWeight="Bold" BorderBrush="White" 
-                           >
-                     <ListBoxItem Content="Francaise" FontWeight="Normal"/>
+               <GroupBox Header="Nationalité" FontWeight="Bold" Margin="0 10 0 0" Height="100">
+                  <ListBox Name="listBox1" FontWeight="Bold" BorderBrush="White">
+                     <ListBox.Resources>
+                        <Style TargetType="ListBoxItem">
+                           <Setter Property="HorizontalAlignment" Value="Left" />
+                           <Setter Property="Padding" Value="5 0 0 0" />
+                           <Setter Property="FontStyle" Value="Italic" />
+                           <Setter Property="Foreground" Value="#ff009eaf" />
+                        </Style>
+                        <!-- Style for non selectable element -->
+                        <!--We will add the target type directly in the 
+                        definition of the property inside the setter -->
+                        <Style x:Key="SelectionDisabled" >
+                           <Setter Property="Control.FontWeight" Value="Light"/>
+                           <Setter Property="Control.HorizontalAlignment" Value="Center"/>
+                           <Setter Property="Control.IsEnabled" Value="False" />
+                        </Style>
+                        
+                        <!-- Second line has the same style, but we would like to 
+                             make it bold face -->
+                        <Style BasedOn="{StaticResource {x:Type ListBoxItem}}" TargetType="ListBoxItem"
+                               x:Key="BoldLine"
+                               >
+                           <Setter Property="Control.FontWeight" Value="Bold" />
+                        </Style>
+
+                     </ListBox.Resources>
+                     
+                     <ListBoxItem Content="-- For text Purposes --" FontWeight="Normal"
+                                  Style="{StaticResource SelectionDisabled}"
+                                  />
+                     <ListBoxItem Content="Francaise" Style="{StaticResource BoldLine}"/>
                      <ListBoxItem Content="Européenne" FontWeight="Normal"/>
                      <ListBoxItem Content="Autre" FontWeight="Normal"/>
                   </ListBox>
 
                </GroupBox>
-               
+
             </StackPanel>
 
             <StackPanel Grid.Column="1">
@@ -60,7 +102,7 @@
                                    Margin="5"
                                    />
                            <TextBlock Name="textBoxBirthDate" VerticalAlignment="Center" FontWeight="Normal"
-                                      Text="{Binding ElementName=slider1, Path=Value, 
+                                      Text="{Binding ElementName=slider1, Path=Value, Mode=OneWay, 
                                       Converter= {x:Static local:DoubleToIntConverter.cnvInstance}}"
                                       />
                         </StackPanel>
@@ -78,9 +120,18 @@
                <ColumnDefinition Width="*" />
                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Content="OK" Width="60" Margin="100 10 20 10" Grid.Column="0"/>
-            <Button Content="Reset" Width="60" Margin="20,10,100,10" Grid.Column="1"/>
+            <Button Content="OK" Width="60" Margin="100 10 20 10" Grid.Column="0"
+                    Click="Button_Click" Style="{StaticResource BrushedButton}"
+                    />
+            <Button Content="Reset" Width="60" Margin="20,10,100,10" Grid.Column="1"
+                    Style="{StaticResource BrushedButton}"
+                    />
          </Grid>
+         <TextBlock Name="currDateTextBlock" Height="30"  />
+         <Button Name="ShowDLGBox" Content="Show DlgBox" Style="{StaticResource BrushedButton}" Width="60"
+                 Click="ShowDLGBox_Click">
+            
+         </Button>
       </StackPanel>
 
    </Border>

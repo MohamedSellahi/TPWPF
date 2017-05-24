@@ -1,0 +1,39 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:AP0">
+   
+   <!--Button styles -->
+   <Style x:Key="BoutonStyle">
+      <Setter Property="Button.Width" Value="100"/>
+      <Setter Property="Button.Height" Value="30"/>
+      <Setter Property="Button.Foreground" Value="Blue"/>
+      <Setter Property="Button.FontWeight" Value="Bold"/>
+      <Setter Property="Button.FontSize" Value="12"/>
+      <Setter Property="Button.FontStyle" Value="Italic" />
+   </Style>
+   
+   <!-- Brushes for custom text coloring -->
+   <!-- This brushed will be used in conjenction of properties 
+        of any UIElement supporting them -->
+   <SolidColorBrush x:Key="MyTextColor" Color="#FFAF2800" />
+   
+   <LinearGradientBrush x:Key="BackGroundColor" >
+      <GradientStop Color="Yellow" Offset="0.0"/>
+      <GradientStop Color="#9BFFA500" Offset="0.5"/>
+      <GradientStop Color="Yellow" Offset="1.0"/>
+   </LinearGradientBrush>
+   
+   <!-- Styled buttons -->
+   <Style x:Key="BrushedButton">
+      <Setter Property="Button.Foreground" Value="{StaticResource MyTextColor}"/>
+      <Setter Property="Button.Background" Value="{StaticResource BackGroundColor}"/>
+
+   </Style>
+   <!-- just fpor texting purposes -->
+   <Style x:Key="MytextColorStyle" TargetType="RadioButton">
+      <Setter Property="Foreground" Value="Red"/>
+   </Style>
+
+
+
+</ResourceDictionary>
